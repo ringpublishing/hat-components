@@ -1,0 +1,39 @@
+.gridContainer {
+  @media only screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr);
+    gap: var(--gridGap, var(--ringGap,20px));
+    :global {
+      .gridBox {
+        @for $i from 1 through 12 {
+          &.gridCol#{$i} {
+            grid-column: auto / span $i;
+          }
+        }
+      }
+
+      .gridWidget {
+        // widgetConfig.customWidth
+        @for $i from 1 through 12 {
+          &.widgetWidth#{$i} {
+            width: $i / 12 * 100%;
+          }
+        }
+
+        // widgetConfig.customPosition
+        &.widgetPositionLeft {
+          float: left;
+        }
+
+        &.widgetPositionRight {
+          float: right;
+        }
+
+        &.widgetPositionCenter {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+
